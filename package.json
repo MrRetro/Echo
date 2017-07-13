@@ -1,0 +1,26 @@
+{
+  "name": "Echo",
+  "version": "1.0.0",
+  "description": "This is for study gulp project !",
+  "homepage": "http://www.2tro.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MrRetro/Echo.git"
+  },
+  "author": {
+    "name": "retro",
+    "email": "caijiajia1@126.com"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-clean": "^0.3.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-htmlmin": "^3.0.0",
+    "gulp-imagemin": "^3.3.0",
+    "gulp-less": "^3.0.1",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^3.0.0"
+  }
+}
