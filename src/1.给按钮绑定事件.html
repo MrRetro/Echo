@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>diy绑定按钮事件</title>
+		<style type="text/css">
+			.btn-box{float: left;width: 100%;margin-bottom: 10px;}
+			.sp-btn{padding:4px 12px; color: #fff; letter-spacing: 1px; background: #3385ff; border-bottom: 1px solid #2d78f4; outline: medium; -webkit-appearance: none; -webkit-border-radius: 0;cursor: pointer;}
+			.sp-btn:hover{background: #317ef3; border-bottom: 1px solid #2868c8; box-shadow: 1px 1px 1px #ccc;}
+			.p-bg{float:left;width: 80%;height: 500px;background-color: wheat;transition: all .2s linear;}
+			.p-bg.active{width: 50%;height: 800px;background-color: #f23031;}
+			.p-bg.cur{width: 10%;height: 100px;background-color: grey;}
+		</style>
+	</head>
+	<body>
+		<div class="btn-box"><span class="sp-btn">开关</span></div>
+		<div class="p-bg">
+			<pre>
+	$.fn.binChange({
+		btn:'.sp-btn',
+		target:'.p-bg',
+		cs:'active',
+		click:'click'
+	});
+			</pre>
+		</div>
+		<script src="js/echo.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				$.fn.binChange({
+					btn:'.sp-btn',
+					target:'.p-bg',
+					cs:'active',
+					click:'click'
+				});
+			})
+			
+		</script>
+	</body>
+</html>
