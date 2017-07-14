@@ -23,4 +23,33 @@ $.fn.extend({
 			})
 		}
 	},
+	//给非a标签加上a标签事件
+	aLink:function (e){
+		obj={
+			btn:'.p-btn',					//按钮
+			link:'http://www.2tro.com',		//目标
+			click:'click',					//事件
+			target:'_self'					//跳转
+		}
+		nowObj=$.extend({},obj,e);
+		$(nowObj.btn).on(nowObj.click,function(){
+			switch(nowObj.target){
+				case '_self':
+					window.location.href=nowObj.link;
+					break;
+				case '_blank':
+					window.open(nowObj.link);
+					break;
+				case '_parent':
+					window.parent.location.href=nowObj.link;
+					break;
+				case '_top':
+					window.top.location.href=nowObj.link;
+					break;
+				default:
+					window.location.href=nowObj.link;
+					break;
+			}
+		})
+	},
 });
