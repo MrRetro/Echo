@@ -52,4 +52,24 @@ $.fn.extend({
 			}
 		})
 	},
+	//随html根标签的字体大小而缩放(利用rem单位来控制页面整体缩放)
+	autoFontSize:function(e) {
+		var func = function(){
+			obj={
+				fontSize:1000,          //根字体大小
+				screenW:1000,			//适配最大屏幕宽度
+			}
+			nowObj=$.extend({},obj,e);
+			var w = $(window).width();
+			var fontSize = nowObj.fontSize * w / nowObj.screenW;
+			var fontSizeNow = fontSize > nowObj.fontSize ? nowObj.fontSize : fontSize;
+			$('html').css({
+				'font-size': fontSizeNow
+			});
+		}
+		func();
+		$(window).resize(function() {
+			func();
+		});
+	},
 });
