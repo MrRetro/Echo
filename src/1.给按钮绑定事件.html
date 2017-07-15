@@ -13,12 +13,23 @@
 		</style>
 	</head>
 	<body>
-		<div class="btn-box"><span class="sp-btn">开关</span></div>
-		<div class="p-bg">
+		<div class="btn-box"><span class="sp-btn sp-btn1">开关</span></div>
+		<div class="p-bg p-bg1">
 			<pre>
 	$.fn.binChange({
-		btn:'.sp-btn',
-		target:'.p-bg',
+		btn:'.sp-btn1',
+		target:'.p-bg1',
+		cs:'active',
+		click:'click'
+	});
+			</pre>
+		</div>
+		<div class="btn-box"><span class="sp-btn sp-btn2">开关</span></div>
+		<div class="p-bg p-bg2">
+			<pre>
+	$.fn.binChange({
+		btn:'.sp-btn2',
+		target:'.p-bg2',
 		cs:'active',
 		click:'click'
 	});
@@ -28,8 +39,14 @@
 		<script type="text/javascript">
 			$(function(){
 				$.fn.binChange({
-					btn:'.sp-btn',
-					target:'.p-bg',
+					btn:'.sp-btn1',
+					target:'.p-bg1',
+					cs:'active',
+					click:'click'
+				});
+				$.fn.binChange({
+					btn:'.sp-btn2',
+					target:'.p-bg2',
 					cs:'active',
 					click:'click'
 				});

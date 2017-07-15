@@ -12,3 +12,7 @@
 3.场景：整个页面需要响应式-根据根html标签的大小来控制   
   实现：$.fn.autoFontSize({fontSize:'根字体大小',screenW:'适配显示器的最大宽度'})   
   -->点这里：[autoFontSize](http://htmlpreview.github.io/?https://github.com/MrRetro/Echo/blob/master/src/3.小球随html字体大小而缩放.html)
+     
+4.场景：批量给关键字加高亮状态   
+  实现：$.fn.light({content:'上下文',target:'目标',key:'关键字',newKey:'新关键字',cs:'类名'})   
+  -->点这里：[light](http://htmlpreview.github.io/?https://github.com/MrRetro/Echo/blob/master/src/4.批量替换关键字.html)

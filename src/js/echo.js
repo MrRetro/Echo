@@ -6,13 +6,13 @@ return new Za.prototype.init(a,b,c,d,e)}m.Tween=Za,Za.prototype={constructor:Za,
 $.fn.extend({
 	//按钮改变目标
 	binChange:function(e){
-		obj={
+		var obj={
 			btn:'.btnName',			//按钮
 			target:'.toName',		//目标
 			cs:'active',			//状态
 			click:'click'			//事件
 		}
-		nowObj=$.extend({},obj,e);
+		var nowObj=$.extend({},obj,e);
 		if($(nowObj.btn)){
 			$(nowObj.btn).on(nowObj.click,function(){
 				if($(nowObj.target).hasClass(nowObj.cs)){
@@ -25,13 +25,13 @@ $.fn.extend({
 	},
 	//给非a标签加上a标签事件
 	aLink:function (e){
-		obj={
+		var obj={
 			btn:'.p-btn',					//按钮
 			link:'http://www.2tro.com',		//目标
 			click:'click',					//事件
 			target:'_self'					//跳转
 		}
-		nowObj=$.extend({},obj,e);
+		var nowObj=$.extend({},obj,e);
 		$(nowObj.btn).on(nowObj.click,function(){
 			switch(nowObj.target){
 				case '_self':
@@ -55,11 +55,11 @@ $.fn.extend({
 	//随html根标签的字体大小而缩放(利用rem单位来控制页面整体缩放)
 	autoFontSize:function(e) {
 		var func = function(){
-			obj={
+			var obj={
 				fontSize:1000,          //根字体大小
 				screenW:1000,			//适配最大屏幕宽度
 			}
-			nowObj=$.extend({},obj,e);
+			var nowObj=$.extend({},obj,e);
 			var w = $(window).width();
 			var fontSize = nowObj.fontSize * w / nowObj.screenW;
 			var fontSizeNow = fontSize > nowObj.fontSize ? nowObj.fontSize : fontSize;
@@ -72,4 +72,18 @@ $.fn.extend({
 			func();
 		});
 	},
+	//批量给关键字高亮
+	light:function (e){
+		var obj={
+			content:'',					//上下文
+			target:'',					//目标
+			key:'',						//关键字
+			newKey:'',					//新关键字
+			cs:'active',				//类名
+		}
+		var nowObj=$.extend({},obj,e);
+		var newKey=nowObj.newKey!=''?nowObj.newKey:nowObj.key;
+		newContent=$(nowObj.target).html().replace(eval("/"+nowObj.key+"/g"),"<font class='"+nowObj.cs+"' >"+newKey+"</font>");
+		$(nowObj.target).html(newContent);
+	}
 });
