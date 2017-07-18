@@ -142,7 +142,7 @@ $.fn.extend({
 			url = url.replace(/url\("/,"");//去掉 url("
 			url = url.replace(/"\)/,"");//去掉后面的 ")
 			
-			imgObj['url']=url;
+			imgObj['url']=url=='none'?'#':url;
 			mulitImg.push(imgObj);
 		}
 		for(var i = 0 ; i < imgTotal ; i++){
@@ -163,7 +163,12 @@ $.fn.extend({
 		    }
 			
 		    if(i+1>=imgTotal){
-		    	setTimeout(function(){$('#spiner').remove();},2000)
+		    	setTimeout(function(){
+		    		//清空所有loading标签
+		    		$('.spinner').children('sp').remove();
+		    		$('.spinner').removeClass('spinner');
+		    		$('#spiner').remove();
+		    	},2000)
 		    }
 		}
 	},
