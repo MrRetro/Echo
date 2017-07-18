@@ -91,6 +91,7 @@ $.fn.extend({
 		var obj={
 			cs:'.sp-img',						//目标
 			color:'#f0f0f0',					//loading颜色
+			scale:1,							//loading缩放比例
 		};
 		var spMark='';
 		var nowObj=$.extend({},obj,e);
@@ -129,14 +130,13 @@ $.fn.extend({
 			
 			csW=csObj.width();
 			csH=csObj.height();
-			console.log(csW)
 			
 			var mLeft=csW-100>0?(csW-100)/2:0;
 			var mTop=csH-100>0?(csH-100)/2:0;
 			var fax=100/Math.min(csW,csH);
-			fax=fax>1?0.5:fax;
+			fax=nowObj.scale!=1?nowObj.scale:(fax>1?0.5:fax);
 			url=csObj.css('background-image');
-			csObj.css({'background-image':'none','margin-left':mLeft,'margin-top':mTop,'transform': 'scale('+fax+')'});
+			csObj.css({'background-image':'http://2tro.com/retroWeb/img/index_foot_logo.png','margin-left':mLeft,'margin-top':mTop,'transform': 'scale('+fax+')'});
 			csObj.addClass('spinner');
 			csObj.append(spMark)
 			url = url.replace(/url\("/,"");//去掉 url("
@@ -145,20 +145,25 @@ $.fn.extend({
 			imgObj['url']=url;
 			mulitImg.push(imgObj);
 		}
-		
 		for(var i = 0 ; i < imgTotal ; i++){
 		    img[i] = new Image();
-		    img[i].src = mulitImg[i].url;
-		    var c=0;
-		    img[i].onload = function(){
-		       $(nowObj.cs).eq(c).css({'background-image':'url('+mulitImg[c].url+')','margin-left':mulitImg[c].mLeft,'margin-top':mulitImg[c].mTop,'transform':mulitImg[c].transform});
-		       $(nowObj.cs).eq(c).removeClass('spinner');
-		       $(nowObj.cs).eq(c).children('.sp').remove();
-		       $(nowObj.cs).eq(c).hide().fadeIn();
-		       c++;
-			    if(c+1==imgTotal){
-			    	setTimeout(function(){$('#spiner').remove();},2000)
+		    	
+			if(mulitImg[i].url!='none'){
+			    img[i].src = mulitImg[i].url;
+			    var c=0;
+			    img[i].onload = function(){
+				    var cObj=$(nowObj.cs).eq(c);
+						
+						cObj.css({'background-image':'url('+mulitImg[c].url+')','margin-left':mulitImg[c].mLeft,'margin-top':mulitImg[c].mTop,'transform':mulitImg[c].transform});
+					    cObj.removeClass('spinner');
+					    cObj.children('.sp').remove();
+					    cObj.hide().fadeIn();
+					    c++;
 			    }
+		    }
+			
+		    if(i+1>=imgTotal){
+		    	setTimeout(function(){$('#spiner').remove();},2000)
 		    }
 		}
 	},
