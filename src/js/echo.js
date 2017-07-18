@@ -119,15 +119,24 @@ $.fn.extend({
 		//找到背景图片
 		imgTotal = $(nowObj.cs).length;
 		for(var q=0;q<imgTotal;q++){
-		    var imgObj={};
+		    var imgObj={},
+			    csW,//宽度
+			    csH;//高度
 			var csObj=$(nowObj.cs).eq(q); //当前标签
 			imgObj['mLeft']=csObj.css('margin-left');
 			imgObj['mTop']=csObj.css('margin-top');
+			imgObj['transform']=csObj.css('transform');
 			
-			var mLeft=csObj.width()-100>0?(csObj.width()-100)/2:0;
-			var mTop=csObj.height()-100>0?(csObj.height()-100)/2:0;
+			csW=csObj.width();
+			csH=csObj.height();
+			console.log(csW)
+			
+			var mLeft=csW-100>0?(csW-100)/2:0;
+			var mTop=csH-100>0?(csH-100)/2:0;
+			var fax=100/Math.min(csW,csH);
+			fax=fax>1?0.5:fax;
 			url=csObj.css('background-image');
-			csObj.css({'background-image':'none','margin-left':mLeft,'margin-top':mTop});
+			csObj.css({'background-image':'none','margin-left':mLeft,'margin-top':mTop,'transform': 'scale('+fax+')','transform-origin':'center'});
 			csObj.addClass('spinner');
 			csObj.append(spMark)
 			url = url.replace(/url\("/,"");//去掉 url("
@@ -142,14 +151,14 @@ $.fn.extend({
 		    img[i].src = mulitImg[i].url;
 		    var c=0;
 		    img[i].onload = function(){
-		       $(nowObj.cs).eq(c).css({'background-image':'url('+mulitImg[c].url+')','margin-left':mulitImg[c].mLeft,'margin-top':mulitImg[c].mTop});
+		       $(nowObj.cs).eq(c).css({'background-image':'url('+mulitImg[c].url+')','margin-left':mulitImg[c].mLeft,'margin-top':mulitImg[c].mTop,'transform':mulitImg[c].transform});
 		       $(nowObj.cs).eq(c).removeClass('spinner');
 		       $(nowObj.cs).eq(c).children('.sp').remove();
 		       $(nowObj.cs).eq(c).hide().fadeIn();
 		       c++;
-		    }
-		    if(i+1==imgTotal){
-		    	setTimeout(function(){$('#spiner').remove();},2000)
+			    if(c+1==imgTotal){
+			    	setTimeout(function(){$('#spiner').remove();},2000)
+			    }
 		    }
 		}
 	},
