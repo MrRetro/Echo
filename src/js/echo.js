@@ -136,7 +136,7 @@ $.fn.extend({
 			var fax=100/Math.min(csW,csH);
 			fax=fax>1?0.5:fax;
 			url=csObj.css('background-image');
-			csObj.css({'background-image':'none','margin-left':mLeft,'margin-top':mTop,'transform': 'scale('+fax+')','transform-origin':'center'});
+			csObj.css({'background-image':'none','margin-left':mLeft,'margin-top':mTop,'transform': 'scale('+fax+')'});
 			csObj.addClass('spinner');
 			csObj.append(spMark)
 			url = url.replace(/url\("/,"");//去掉 url("
