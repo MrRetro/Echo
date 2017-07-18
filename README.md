@@ -16,3 +16,7 @@
 4.场景：批量给关键字加高亮状态   
   实现：$.fn.light({content:'上下文',target:'目标',key:'关键字',newKey:'新关键字',cs:'类名'})   
   -->点这里：[light](http://htmlpreview.github.io/?https://github.com/MrRetro/Echo/blob/master/src/4.批量替换关键字.html)
+     
+5.场景：给背景图片做预加载   
+  实现：$.fn.imgsOpt({cs:'目标',color:'loading颜色',})   
+  -->点这里：[imgsOpt](http://htmlpreview.github.io/?https://github.com/MrRetro/Echo/blob/master/src/5.背景图片预先加载.html)

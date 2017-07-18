@@ -85,5 +85,58 @@ $.fn.extend({
 		var newKey=nowObj.newKey!=''?nowObj.newKey:nowObj.key;
 		newContent=$(nowObj.target).html().replace(eval("/"+nowObj.key+"/g"),"<font class='"+nowObj.cs+"' >"+newKey+"</font>");
 		$(nowObj.target).html(newContent);
-	}
+	},
+	//背景图片预加载
+	imgsOpt:function (e){
+		var obj={
+			cs:'.sp-img',						//目标
+			color:'#f0f0f0',					//loading颜色
+		};
+		var spMark='';
+		var nowObj=$.extend({},obj,e);
+		
+		
+		for(var k=0;k<8;k++){
+			spMark+='<i class="sp" />'
+		};
+		
+		var nod = document.createElement('style'),   
+			str = '.spinner{width: 100px !important; height: 100px !important; position: relative; margin: 0 auto;} .spinner .sp{display: inline-block; width: 20px; height: 20px; border-radius: 50%; background: '+nowObj.color+'; position: absolute; -webkit-animation: load 0.8s ease infinite;} @-webkit-keyframes load{0%{-webkit-transform: scale(1.2); opacity: 1;} 100%{-webkit-transform: scale(.3); opacity: 0.5;} } .spinner .sp:nth-child(1){left: 0; top: 50%; margin-top:-10px; -webkit-animation-delay:0.13s;} .spinner .sp:nth-child(2){left: 14px; top: 14px; -webkit-animation-delay:0.26s;} .spinner .sp:nth-child(3){left: 50%; top: 0; margin-left: -10px; -webkit-animation-delay:0.39s;} .spinner .sp:nth-child(4){top: 14px; right:14px; -webkit-animation-delay:0.52s;} .spinner .sp:nth-child(5){right: 0; top: 50%; margin-top:-10px; -webkit-animation-delay:0.65s;} .spinner .sp:nth-child(6){right: 14px; bottom:14px; -webkit-animation-delay:0.78s;} .spinner .sp:nth-child(7){bottom: 0; left: 50%; margin-left: -10px; -webkit-animation-delay:0.91s;} .spinner .sp:nth-child(8){bottom: 14px; left: 14px; -webkit-animation-delay:1.04s;}';  
+			nod.type='text/css';  
+			nod.id='spiner';
+			if(nod.styleSheet){         //ie下  
+				nod.styleSheet.cssText = str;  
+			} else {  
+				nod.innerHTML = str;       //或者写成 nod.appendChild(document.createTextNode(str))  
+			};
+			$("head").append(nod);
+			
+		var img = [],  
+		    flag = 0, 
+		    mulitImg = [];
+		    imgTotal=0;
+		    self=this;
+		//找到背景图片
+		imgTotal = $(nowObj.cs).length;
+		for(var q=0;q<imgTotal;q++){
+			url=$(nowObj.cs).eq(q).css('background-image');
+			$(nowObj.cs).eq(q).css({'background-image':'none'});
+			$(nowObj.cs).eq(q).addClass('spinner');
+			$(nowObj.cs).eq(q).append(spMark)
+			url = url.replace(/url\("/,"");//去掉 url("
+			url = url.replace(/"\)/,"");//去掉后面的 ")
+			mulitImg.push(url);
+		}
+		for(var i = 0 ; i < imgTotal ; i++){
+		    img[i] = new Image();
+		    img[i].src = mulitImg[i];
+		    var c=0;
+		    img[i].onload = function(){
+		       $(nowObj.cs).eq(c).css({'background-image':'url('+mulitImg[c]+')'});
+		       $(nowObj.cs).eq(c).removeClass('spinner');
+		       $(nowObj.cs).eq(c).children('.sp').remove();
+		       c++;
+		    }
+		}
+	},
 });
