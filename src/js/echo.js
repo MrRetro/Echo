@@ -124,12 +124,11 @@ $.fn.extend({
 			    csW,//宽度
 			    csH;//高度
 			var csObj=$(nowObj.cs).eq(q); //当前标签
-			imgObj['visibility']=csObj.css('visibility');
+			var cssPosition=csObj.css('position');
+			imgObj['position']=cssPosition;
 			imgObj['id']='spinner'+q;
 			csW=csObj.width();
 			csH=csObj.height();
-			var offsetLeft=csObj.offset().left;
-			var offsetTop=csObj.offset().top;
 			
 			var imgBox=$('<span />', {class: 'spinner',id:'spinner'+q});
 			var imgTxt=$('<span />', {class: 'sp-txt'});
@@ -141,7 +140,7 @@ $.fn.extend({
 			var fax=minV;
 			fax=nowObj.scale!=1?nowObj.scale:(fax>1?1/fax:fax);
 			url=csObj.css('background-image');
-			imgBox.css({width:csW,height:csH,'display':'inline-block','left':offsetLeft,'top':offsetTop,'position':'absolute'});
+			imgBox.css({width:csW,height:csH,'left':0,'top':0,'position':'absolute'});
 			imgTxt.css({width:100,height:100,'float':'left','margin-left':mLeft,'margin-top':mTop,'transform': 'scale('+fax+')'});
 			imgBox.append(imgTxt);
 			//宽高不存在就不显示点点点
@@ -149,8 +148,9 @@ $.fn.extend({
 				imgBox.children('.sp-txt').append(spMark);
 				imgBox.children('.sp-txt').children('.sp').css({'background':nowObj.color});
 			}
-			$('body').append(imgBox);
-			csObj.css({'visibility':'hidden'});
+			csObj.append(imgBox);
+			var p=cssPosition=='relative'||cssPosition=='absolute'||cssPosition=='fixed'?cssPosition:'relative';
+			csObj.css({'position':p,'background-image':'none'});
 			url = url.replace(/url\("/,"");//去掉 url("
 			url = url.replace(/"\)/,"");//去掉后面的 ")
 			url=url.substr(0,1)=='u'?url.substr(4,url.length-5):url;
@@ -166,7 +166,7 @@ $.fn.extend({
 			    img[i].onload = function(){
 				    var cObj=$(nowObj.cs).eq(c);
 					    $('#'+mulitImg[c].id).remove();
-						cObj.css({'visibility':mulitImg[c].visibility});
+						cObj.css({'position':mulitImg[c].position,'background-image':'url("'+mulitImg[c].url+'")'});
 					    cObj.hide().fadeIn();
 					    c++;
 			    }
