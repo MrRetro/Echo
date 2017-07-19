@@ -98,7 +98,7 @@ $.fn.extend({
 		
 		
 		for(var k=0;k<8;k++){
-			spMark+='<i class="sp" />'
+			spMark+='<span class="sp" />'
 		};
 		
 		var nod = document.createElement('style'),   
@@ -136,12 +136,11 @@ $.fn.extend({
 			var fax=100/Math.min(csW,csH);
 			fax=nowObj.scale!=1?nowObj.scale:(fax>1?0.5:fax);
 			url=csObj.css('background-image');
-			csObj.css({'background-image':'http://2tro.com/retroWeb/img/index_foot_logo.png','margin-left':mLeft,'margin-top':mTop,'transform': 'scale('+fax+')'});
+			csObj.css({'background-image':'url(#)','margin-left':mLeft,'margin-top':mTop,'transform': 'scale('+fax+')'});
 			csObj.addClass('spinner');
 			csObj.append(spMark)
 			url = url.replace(/url\("/,"");//去掉 url("
 			url = url.replace(/"\)/,"");//去掉后面的 ")
-			
 			imgObj['url']=url=='none'?'#':url;
 			mulitImg.push(imgObj);
 		}
