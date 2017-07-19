@@ -20,3 +20,7 @@
 5.场景：给背景图片做预加载   
   实现：$.fn.imgsOpt({cs:'目标',color:'loading颜色',scale:'loading缩放比例'})   
   -->点这里：[imgsOpt](http://htmlpreview.github.io/?https://github.com/MrRetro/Echo/blob/master/src/5.背景图片预先加载.html)
+     
+6.场景：页面滚轮回到固定位置  
+  实现：$.fn.scrollTop({cs:'目标',top:'置顶位置',click:'事件',	animate:'是否动画',time:'动画时间',parent:'是否为父类',})    
+  -->点这里：[scrollTop](http://htmlpreview.github.io/?https://github.com/MrRetro/Echo/blob/master/src/6.滚轮回到顶部.html)

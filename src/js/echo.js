@@ -171,4 +171,35 @@ $.fn.extend({
 		    }
 		}
 	},
+	//页面滚轮回到顶部
+	scrollTop:function (e){
+		var obj={
+			cs:'',			//元素
+			top:0,			//默认置顶
+			click:'click',	//事件
+			animate:true,	//动画
+			time:500,		//动画时间
+			parent:false,	//是否为父类
+		}
+		var nowObj=$.extend({},obj,e);
+		var func=function(){
+			var parent=window.parent.document;
+			if(!nowObj.parent){
+				parent=null;
+			}
+			if(nowObj.animate){
+				$("html,body",parent).animate({ scrollTop: nowObj.top }, nowObj.time);
+			}else{
+				$("html,body",parent).scrollTop(0);
+			}
+		}
+		if(nowObj.cs!=''){
+			$(nowObj.cs).on(nowObj.click,function(){
+				func();
+			});
+		}else{
+			func();
+		}
+		
+	},
 });

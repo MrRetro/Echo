@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.box{float:left;width:500px;height: 2000px;background-color: wheat;}
+		</style>
+	</head>
+	<body>
+		<div class="box">asd</div>
+		<script src="js/echo.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				$.fn.scrollTop({
+					cs:'.box',		//元素
+					top:0,			//默认置顶
+					click:'click',	//事件
+					animate:true,	//动画
+					time:500,		//动画时间
+					parent:false,	//是否为父类
+				})
+			})
+		</script>
+	</body>
+</html>
