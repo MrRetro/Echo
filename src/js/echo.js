@@ -141,6 +141,7 @@ $.fn.extend({
 			csObj.append(spMark)
 			url = url.replace(/url\("/,"");//去掉 url("
 			url = url.replace(/"\)/,"");//去掉后面的 ")
+			url=url.substr(0,1)=='u'?url.substr(4,url.length-5):url;
 			imgObj['url']=url=='none'?'#':url;
 			mulitImg.push(imgObj);
 		}
@@ -152,7 +153,6 @@ $.fn.extend({
 			    var c=0;
 			    img[i].onload = function(){
 				    var cObj=$(nowObj.cs).eq(c);
-						
 						cObj.css({'background-image':'url('+mulitImg[c].url+')','margin-left':mulitImg[c].mLeft,'margin-top':mulitImg[c].mTop,'transform':mulitImg[c].transform});
 					    cObj.removeClass('spinner');
 					    cObj.children('.sp').remove();
