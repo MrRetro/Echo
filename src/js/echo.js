@@ -177,7 +177,7 @@ $.fn.extend({
 		    if(i+1>=imgTotal){
 		    	setTimeout(function(){
 		    		//清空所有loading标签
-		    		$('body>.spinner').remove();
+		    		$('.spinner').remove();
 		    		$('#spiner').remove();
 		    	},2000)
 		    }
