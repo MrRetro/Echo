@@ -136,22 +136,18 @@ $.fn.extend({
 			
 			var mLeft=csW-100>0?(csW-100)/2:0;
 			var mTop=csH-100>0?(csH-100)/2:0;
-			var fax=100/Math.min(csW,csH);
-			fax=nowObj.scale!=1?nowObj.scale:(fax>1?0.5:fax);
+			var minV=Math.min(csW,csH);
+				minV=minV!=0?(100/minV<1?100/minV:minV/100):0;
+			var fax=minV;
+			fax=nowObj.scale!=1?nowObj.scale:(fax>1?1/fax:fax);
 			url=csObj.css('background-image');
-			//图片太小的时候，loading动画左上角对齐
-			if(csW<=100){
-				mLeft=0;
-			}
-			if(csH<=100){
-				mTop=0;
-			}
 			imgBox.css({width:csW,height:csH,'display':'inline-block','left':offsetLeft,'top':offsetTop,'position':'absolute'});
 			imgTxt.css({width:100,height:100,'float':'left','margin-left':mLeft,'margin-top':mTop,'transform': 'scale('+fax+')'});
 			imgBox.append(imgTxt);
 			//宽高不存在就不显示点点点
-			if(Math.min(csW,csH)>0){
-				imgBox.children('.sp-txt').append(spMark)
+			if(minV>0){
+				imgBox.children('.sp-txt').append(spMark);
+				imgBox.children('.sp-txt').children('.sp').css({'background':nowObj.color});
 			}
 			$('body').append(imgBox);
 			csObj.css({'visibility':'hidden'});
