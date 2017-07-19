@@ -153,7 +153,7 @@ $.fn.extend({
 			    var c=0;
 			    img[i].onload = function(){
 				    var cObj=$(nowObj.cs).eq(c);
-						cObj.css({'background-image':'url('+mulitImg[c].url+')','margin-left':mulitImg[c].mLeft,'margin-top':mulitImg[c].mTop,'transform':mulitImg[c].transform});
+						cObj.css({'background-image':'url("'+mulitImg[c].url+'")','margin-left':mulitImg[c].mLeft,'margin-top':mulitImg[c].mTop,'transform':mulitImg[c].transform});
 					    cObj.removeClass('spinner');
 					    cObj.children('.sp').remove();
 					    cObj.hide().fadeIn();
