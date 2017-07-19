@@ -102,7 +102,7 @@ $.fn.extend({
 		};
 		
 		var nod = document.createElement('style'),   
-			str = '.spinner{width: 100px !important; height: 100px !important; position: relative; margin:0 auto;} .spinner .sp{display: inline-block; width: 20px; height: 20px; border-radius: 50%; background: '+nowObj.color+'; position: absolute; -webkit-animation: load 0.8s ease infinite;} @-webkit-keyframes load{0%{-webkit-transform: scale(1.2); opacity: 1;} 100%{-webkit-transform: scale(.3); opacity: 0.5;} } .spinner .sp:nth-child(1){left: 0; top: 50%; margin-top:-10px; -webkit-animation-delay:0.13s;} .spinner .sp:nth-child(2){left: 14px; top: 14px; -webkit-animation-delay:0.26s;} .spinner .sp:nth-child(3){left: 50%; top: 0; margin-left: -10px; -webkit-animation-delay:0.39s;} .spinner .sp:nth-child(4){top: 14px; right:14px; -webkit-animation-delay:0.52s;} .spinner .sp:nth-child(5){right: 0; top: 50%; margin-top:-10px; -webkit-animation-delay:0.65s;} .spinner .sp:nth-child(6){right: 14px; bottom:14px; -webkit-animation-delay:0.78s;} .spinner .sp:nth-child(7){bottom: 0; left: 50%; margin-left: -10px; -webkit-animation-delay:0.91s;} .spinner .sp:nth-child(8){bottom: 14px; left: 14px; -webkit-animation-delay:1.04s;}';  
+			str = '.spinner{width: 100px; height: 100px; position: relative; margin:0 auto;} .spinner .sp{display: inline-block; width: 20px; height: 20px; border-radius: 50%; background: '+nowObj.color+'; position: absolute; -webkit-animation: load 0.8s ease infinite;} @-webkit-keyframes load{0%{-webkit-transform: scale(1.2); opacity: 1;} 100%{-webkit-transform: scale(.3); opacity: 0.5;} } .spinner .sp:nth-child(1){left: 0; top: 50%; margin-top:-10px; -webkit-animation-delay:0.13s;} .spinner .sp:nth-child(2){left: 14px; top: 14px; -webkit-animation-delay:0.26s;} .spinner .sp:nth-child(3){left: 50%; top: 0; margin-left: -10px; -webkit-animation-delay:0.39s;} .spinner .sp:nth-child(4){top: 14px; right:14px; -webkit-animation-delay:0.52s;} .spinner .sp:nth-child(5){right: 0; top: 50%; margin-top:-10px; -webkit-animation-delay:0.65s;} .spinner .sp:nth-child(6){right: 14px; bottom:14px; -webkit-animation-delay:0.78s;} .spinner .sp:nth-child(7){bottom: 0; left: 50%; margin-left: -10px; -webkit-animation-delay:0.91s;} .spinner .sp:nth-child(8){bottom: 14px; left: 14px; -webkit-animation-delay:1.04s;}';  
 			nod.type='text/css';  
 			nod.id='spiner';
 			if(nod.styleSheet){         //ie下  
@@ -124,48 +124,64 @@ $.fn.extend({
 			    csW,//宽度
 			    csH;//高度
 			var csObj=$(nowObj.cs).eq(q); //当前标签
-			imgObj['mLeft']=csObj.css('margin-left');
-			imgObj['mTop']=csObj.css('margin-top');
-			imgObj['transform']=csObj.css('transform');
-			
+			imgObj['visibility']=csObj.css('visibility');
+			imgObj['id']='spinner'+q;
 			csW=csObj.width();
 			csH=csObj.height();
+			var offsetLeft=csObj.offset().left;
+			var offsetTop=csObj.offset().top;
+			
+			var imgBox=$('<span />', {class: 'spinner',id:'spinner'+q});
+			var imgTxt=$('<span />', {class: 'sp-txt'});
 			
 			var mLeft=csW-100>0?(csW-100)/2:0;
 			var mTop=csH-100>0?(csH-100)/2:0;
 			var fax=100/Math.min(csW,csH);
 			fax=nowObj.scale!=1?nowObj.scale:(fax>1?0.5:fax);
 			url=csObj.css('background-image');
-			csObj.css({'background-image':'url(#)','margin-left':mLeft,'margin-top':mTop,'transform': 'scale('+fax+')'});
-			csObj.addClass('spinner');
-			csObj.append(spMark)
+			//图片太小的时候，loading动画左上角对齐
+			if(csW<=100){
+				mLeft=0;
+			}
+			if(csH<=100){
+				mTop=0;
+			}
+			imgBox.css({width:csW,height:csH,'display':'inline-block','left':offsetLeft,'top':offsetTop,'position':'absolute'});
+			imgTxt.css({width:100,height:100,'float':'left','margin-left':mLeft,'margin-top':mTop,'transform': 'scale('+fax+')'});
+			imgBox.append(imgTxt);
+			//宽高不存在就不显示点点点
+			if(Math.min(csW,csH)>0){
+				imgBox.children('.sp-txt').append(spMark)
+			}
+			$('body').append(imgBox);
+			csObj.css({'visibility':'hidden'});
 			url = url.replace(/url\("/,"");//去掉 url("
 			url = url.replace(/"\)/,"");//去掉后面的 ")
 			url=url.substr(0,1)=='u'?url.substr(4,url.length-5):url;
-			imgObj['url']=url=='none'?'#':url;
+			imgObj['url']=url=='none'?'':url;
 			mulitImg.push(imgObj);
 		}
+		
+		var c=0;
 		for(var i = 0 ; i < imgTotal ; i++){
 		    img[i] = new Image();
-		    	
-			if(mulitImg[i].url!='none'){
+			if(mulitImg[i].url!=''){
 			    img[i].src = mulitImg[i].url;
-			    var c=0;
 			    img[i].onload = function(){
 				    var cObj=$(nowObj.cs).eq(c);
-						cObj.css({'background-image':'url("'+mulitImg[c].url+'")','margin-left':mulitImg[c].mLeft,'margin-top':mulitImg[c].mTop,'transform':mulitImg[c].transform});
-					    cObj.removeClass('spinner');
-					    cObj.children('.sp').remove();
+					    $('#'+mulitImg[c].id).remove();
+						cObj.css({'visibility':mulitImg[c].visibility});
 					    cObj.hide().fadeIn();
 					    c++;
 			    }
+		    }else{
+		    	c++;
 		    }
 			
 		    if(i+1>=imgTotal){
 		    	setTimeout(function(){
 		    		//清空所有loading标签
-		    		$('.spinner').children('sp').remove();
-		    		$('.spinner').removeClass('spinner');
+		    		$('body>.spinner').remove();
 		    		$('#spiner').remove();
 		    	},2000)
 		    }
