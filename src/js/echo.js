@@ -141,7 +141,9 @@ $.fn.extend({
 			url=csObj.css('background-image');
 			imgBox.css({width:csW,height:csH,'left':0,'top':0,'position':'absolute'});
 			imgTxt.css({width:100,height:100,'float':'left','margin-left':mLeft,'margin-top':mTop,'transform': 'scale('+fax+')'});
-			imgBox.append(imgTxt);
+			if(csObj.children('.spinner').length<1){
+				imgBox.append(imgTxt);
+			}
 			//宽高不存在就不显示点点点
 			if(minV>0){
 				imgBox.children('.sp-txt').append(spMark);
