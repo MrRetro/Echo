@@ -126,11 +126,10 @@ $.fn.extend({
 			var csObj=$(nowObj.cs).eq(q); //当前标签
 			var cssPosition=csObj.css('position');
 			imgObj['position']=cssPosition;
-			imgObj['id']='spinner'+q;
 			csW=csObj.width();
 			csH=csObj.height();
 			
-			var imgBox=$('<span />', {class: 'spinner',id:'spinner'+q});
+			var imgBox=$('<span />', {class: 'spinner'});
 			var imgTxt=$('<span />', {class: 'sp-txt'});
 			
 			var mLeft=csW-100>0?(csW-100)/2:0;
@@ -165,7 +164,7 @@ $.fn.extend({
 			    img[i].src = mulitImg[i].url;
 			    img[i].onload = function(){
 				    var cObj=$(nowObj.cs).eq(c);
-					    $('#'+mulitImg[c].id).remove();
+					    cObj.children('.spinner').remove();
 						cObj.css({'position':mulitImg[c].position,'background-image':'url("'+mulitImg[c].url+'")'});
 					    cObj.hide().fadeIn();
 					    c++;
