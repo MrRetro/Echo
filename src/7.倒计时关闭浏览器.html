@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.box{float:left;width:500px;height: 2000px;background-color: wheat;cursor: pointer;}
+		</style>
+	</head>
+	<body>
+		<div class="box"><h3 style="padding-left:20px;">鼠标不动等5秒后看看</h3></div>
+		<script src="js/echo.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				$.fn.countDown({
+					time:5
+				},function(){
+					if(confirm('时间到了要关浏览器吗？')){
+						window.close();
+					}
+				})
+			})
+		</script>
+	</body>
+</html>

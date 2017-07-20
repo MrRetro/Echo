@@ -215,4 +215,37 @@ $.fn.extend({
 		}
 		
 	},
+	//倒计时处理
+	countDown:function(e,callback){
+		var obj={
+			time:10,	//时间单位为秒  60秒为1分钟|3600秒为一小时|86400秒为一天 
+			func:{},	//回调函数
+		}
+		obj.func=function(){alert('时间到')};
+		var nowObj=$.extend({}, obj, e,{'func':callback});
+		//获取鼠标x,y轴的积  time计时鼠标未动秒速 
+		var x=0,y=0,c,time=1,arry=[];
+		$('html').mousemove(function(e) {
+            e = e || window.event;
+            x = e.pageX || e.clientX + document.body.scroolLeft;
+            y = e.pageY || e.clientY + document.body.scrollTop;
+        });
+		setInterval(function(){
+			time++;
+            arry.push(x*y);
+			if(arry.length>1){
+				c=arry[0];
+				arry[0]=arry[1];
+				arry[1]=c;
+				
+				if(arry[0]!=arry[1]){
+					time=1;
+				}
+				arry.pop();
+			}
+			if(time>nowObj.time){
+				nowObj.func();
+			}
+		},1000);
+	},
 });

@@ -22,5 +22,9 @@
   -->点这里：[imgsOpt](http://htmlpreview.github.io/?https://github.com/MrRetro/Echo/blob/master/src/5.背景图片预先加载.html)
      
 6.场景：页面滚轮回到固定位置  
-  实现：$.fn.scrollTop({cs:'目标',top:'置顶位置',click:'事件',	animate:'是否动画',time:'动画时间',parent:'是否为父类',})    
+	实现：$.fn.scrollTop({cs:'目标',top:'置顶位置',click:'事件',	animate:'是否动画',time:'动画时间',parent:'是否为父类'})    
   -->点这里：[scrollTop](http://htmlpreview.github.io/?https://github.com/MrRetro/Echo/blob/master/src/6.滚轮回到顶部.html)
+     
+7.场景：浏览器在不操作的情况下超时处理  
+	实现：$.fn.countDown({time:'时间单位为秒  60秒为1分钟|3600秒为一小时|86400秒为一天 ',func:'回调函数/这边的回调函数也可以放在第二形参位置'})    
+  -->点这里：[countDown](http://htmlpreview.github.io/?https://github.com/MrRetro/Echo/blob/master/src/7.倒计时关闭浏览器.html)
