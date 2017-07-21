@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<div id="content" style="height:1100px">
+			<div style='border:1px solid tomato;margin-top:20px;height:100%;'>
+				<h1>页面下拉自动加载内容</h1>
+			</div>
+
+		</div>
+		<script src="js/echo.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function() {
+				$.fn.rollLoad({
+					range:50,
+					maxNum:2000
+				},
+				function(){
+					$('body').append('<div style="color:rgb('+parseInt(Math.random()*255)+','+parseInt(Math.random()*255)+','+parseInt(Math.random()*255)+')">我是加载滚动加载出来的~~~~~~^_^~~~~~~~<div>')
+					}
+				)
+			});
+		</script>
+	</body>
+
+</html>

@@ -28,3 +28,7 @@
 7.场景：浏览器在不操作的情况下超时处理  
 	实现：$.fn.countDown({time:'时间单位为秒  60秒为1分钟|3600秒为一小时|86400秒为一天 ',cs:'倒计时数元素',func:'回调函数/这边的回调函数也可以放在第二形参位置'})    
   -->点这里：[countDown](http://htmlpreview.github.io/?https://github.com/MrRetro/Echo/blob/master/src/7.倒计时关闭浏览器.html)
+     
+8.场景：浏览器滚动加载也叫下拉刷新  
+	实现：$.fn.rollLoad({range:'距下边界长度/单位px',maxNum:'设置加载最多次数',func:'回调函数/这边的回调函数也可以放在第二形参位置'})    
+  -->点这里：[rollLoad](http://htmlpreview.github.io/?https://github.com/MrRetro/Echo/blob/master/src/8.滚动加载_下拉刷新.html)

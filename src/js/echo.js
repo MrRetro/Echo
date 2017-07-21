@@ -250,4 +250,36 @@ $.fn.extend({
 			}
 		},1000);
 	},
+	//滚动加载-下拉刷新
+	rollLoad:function(e,callback){
+		var obj={
+			range:50,			//距下边界长度/单位px
+			maxNum:2000,		//设置加载最多次数
+			func:{},			//回调函数
+		}
+		obj.func=function(){};
+		var nowObj=$.extend({},obj,e,{func:callback});
+		var elemt = 50; 			//插入元素高度/单位px
+		var num = 1;
+		var totalheight = 0; 		//浏览器高度加上滚动滚动高度
+		var screenH = 0; 			//浏览器高度(扣除底部一些)
+		$(window).scroll(function() {
+			var srollPos; //滚动条距顶部距离(页面超出窗口的高度)
+			if(window.pageYOffset) {
+				srollPos = window.pageYOffset;
+			} else if(document.compatMode && document.compatMode != 'BackCompat') {
+				srollPos = document.documentElement.scrollTop;
+			} else if(document.body) {
+				srollPos = document.body.scrollTop;
+			}
+
+            totalheight = parseFloat($(window).height()) + parseFloat(srollPos);
+            screenH=$(document).height()-nowObj.range;
+
+			if(screenH <= totalheight && num != nowObj.maxNum) {
+				callback();
+				num++;
+			}
+		});
+	},
 });
