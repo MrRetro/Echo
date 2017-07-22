@@ -282,4 +282,57 @@ $.fn.extend({
 			}
 		});
 	},
+	//鼠标移动到一个不规则图形内处理
+	polygon:function(e,callback){
+		var obj={
+			btn:'',					//目标
+			click:'click',			//事件
+			poly:[],				//多边形点坐标数组
+			cs:'',					//变化类名
+			func:{},				//回调函数
+		}
+		var nowObj=$.extend({},obj,e,{func:callback});
+		
+		//判断点是否在图形内
+		var isInsidePolygon=function(pt, poly){  
+            for (var c = false, i = -1, l = poly.length, j = l - 1; ++i < l; j = i)   
+                ((poly[i].lat <= pt.lat && pt.lat < poly[j].lat) || (poly[j].lat <= pt.lat && pt.lat < poly[i].lat)) &&  
+                (pt.lng < (poly[j].lng - poly[i].lng) * (pt.lat - poly[i].lat) / (poly[j].lat - poly[i].lat) + poly[i].lng) &&  
+                (c = !c);  
+            return c;  
+        }  
+        var func2=function(){
+			nowObj.func();
+        }
+		var state=false;
+		var x,y,c=0;
+		$(nowObj.btn).on('mouseenter',function(e){
+			$(document).mousemove(function(e) {
+	            e = e || window.event;
+	            x = e.pageX || e.clientX + document.body.scroolLeft;
+	            y = e.pageY || e.clientY + document.body.scrollTop;
+	            
+	            state=isInsidePolygon(
+					{lat:x,lng:y},
+					nowObj.poly
+				);
+				if(state){
+					$(nowObj.btn).addClass(nowObj.cs);
+					if(c==0){
+						c=1;
+						$(nowObj.btn).bind(nowObj.click,func2);
+					}
+				}else{
+					$(nowObj.btn).removeClass(nowObj.cs);
+					if(c==1){
+						c=0;
+						$(nowObj.btn).unbind(nowObj.click,func2);
+					}
+				}
+	    	});
+		}).on('mouseleave',function(){
+			$(this).removeClass(nowObj.btn);
+			$(nowObj.btn).unbind(nowObj.click,func2);
+		})
+	},
 });
