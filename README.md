@@ -36,7 +36,7 @@
 9.场景：鼠标移动到一个不规则图像时选中这个图像 
 	实现：$.fn.polygon(e,callback)   
 			参数e:   
-      {   
+&nbsp;{   
            btn:'',					//目标   
            click:'click',	//事件   
            poly:[],				//多边形点坐标数组   
