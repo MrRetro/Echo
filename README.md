@@ -36,12 +36,12 @@
 9.场景：鼠标移动到一个不规则图像时选中这个图像 
 	实现：$.fn.polygon(e,callback)   
 			参数e:   
-      >{   
-      >>   btn:'',					//目标   
-      >>   click:'click',	//事件   
-      >>   poly:[],				//多边形点坐标数组   
-      >>   cs:'',					//变化类名   
-      >>   func:{},				//回调函数   
-      >}  
+##### {   
+###### btn:'',					//目标   
+###### click:'click',	//事件   
+###### poly:[],				//多边形点坐标数组   
+###### cs:'',					//变化类名   
+###### func:{},				//回调函数   
+##### }  
 			参数callback:此处放回调函数  
   -->点这里：[polygon](http://htmlpreview.github.io/?https://github.com/MrRetro/Echo/blob/master/src/9.计算鼠标是否在多边形内.html)
