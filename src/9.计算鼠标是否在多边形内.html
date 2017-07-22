@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{padding: 0;margin: 0;}
+			.box{width: 100px;height: 55px;background: red;position: relative;margin-top: 25px;}
+			.box:before{content: "";position: absolute;top: -25px;left: 0;width: 0;height: 0;border-left: 50px solid transparent;border-right: 50px solid transparent;border-bottom: 25px solid red;}
+			.box:after{content: "";position: absolute;bottom: -25px;left: 0;width: 0;height: 0;border-left: 50px solid transparent;border-right: 50px solid transparent;border-top: 25px solid red;}
+			.box.cur{background-color: gray;}
+			.box.cur:before{border-bottom-color: gray;}
+			.box.cur:after{border-top-color: gray;}
+		</style>
+	</head>
+	<body>
+		<div class="box"></div>
+		<script src="js/echo.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				var state=false;
+				var x,y;
+				$('.box').on('mouseenter',function(e){
+					$(document).mousemove(function(e) {
+			            e = e || window.event;
+			            x = e.pageX || e.clientX + document.body.scroolLeft;
+			            y = e.pageY || e.clientY + document.body.scrollTop;
+			            console.log(x,y)  
+			            
+			            state=isInsidePolygon(
+							{lat:x,lng:y},
+							[
+								{lat:50,lng:0},
+								{lat:100,lng:25},
+								{lat:100,lng:80},
+								{lat:50,lng:105},
+								{lat:0,lng:80},
+								{lat:0,lng:25},
+							]
+						);
+						console.log(state)
+						if(state){
+							$('.box').addClass('cur')
+						}else{
+							$('.box').removeClass('cur')
+						}
+			    	});
+					
+					
+				}).on('mouseleave',function(){
+					$(this).removeClass('cur')
+				})
+			})
+			function isInsidePolygon(pt, poly){  
+                for (var c = false, i = -1, l = poly.length, j = l - 1; ++i < l; j = i)   
+                    ((poly[i].lat <= pt.lat && pt.lat < poly[j].lat) || (poly[j].lat <= pt.lat && pt.lat < poly[i].lat)) &&  
+                    (pt.lng < (poly[j].lng - poly[i].lng) * (pt.lat - poly[i].lat) / (poly[j].lat - poly[i].lat) + poly[i].lng) &&  
+                    (c = !c);  
+                return c;  
+            }  
+		</script>
+	</body>
+</html>

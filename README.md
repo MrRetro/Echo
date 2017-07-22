@@ -32,3 +32,7 @@
 8.场景：浏览器滚动加载也叫下拉刷新  
 	实现：$.fn.rollLoad({range:'距下边界长度/单位px',maxNum:'设置加载最多次数',func:'回调函数/这边的回调函数也可以放在第二形参位置'})    
   -->点这里：[rollLoad](http://htmlpreview.github.io/?https://github.com/MrRetro/Echo/blob/master/src/8.滚动加载_下拉刷新.html)
+     
+9.场景：鼠标移动到一个不规则图像时选中这个图像 
+	实现：$.fn.isInsidePolygon({{lat:'经度',lng:'纬度'}, [{lat:'经度',lng:'纬度'},{lat:'经度',lng:'纬度'}]})    
+  -->点这里：[isInsidePolygon](http://htmlpreview.github.io/?https://github.com/MrRetro/Echo/blob/master/src/9.计算鼠标是否在多边形内.html)
