@@ -33,7 +33,7 @@
 	实现：$.fn.rollLoad({range:'距下边界长度/单位px',maxNum:'设置加载最多次数',func:'回调函数/这边的回调函数也可以放在第二形参位置'})    
   -->点这里：[rollLoad](http://htmlpreview.github.io/?https://github.com/MrRetro/Echo/blob/master/src/8.滚动加载_下拉刷新.html)
      
-9.场景：鼠标移动到一个不规则图像时选中这个图像 
+9.场景：鼠标移动到一个不规则图像时选中这个图像     
 	实现：$.fn.polygon(e,callback)   
 			参数e:   
 				{    
