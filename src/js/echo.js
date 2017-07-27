@@ -335,4 +335,34 @@ $.fn.extend({
 			$(nowObj.btn).unbind(nowObj.click,func2);
 		})
 	},
+	//svg根据坐标点画折线图
+	svgLines:function(e,callback){
+		var obj={
+			points:[],					//坐标点[{x:50,y:50},{x:60,y:70},{x:80,y:90}]
+			btn:'svg',			//svg元素
+			style:{},					//svg样式
+			parent:'body',				//父级有影响排版的类名
+			color:'rgb(0,170,255)',		//线颜色
+			strokeWidth:2,				//线粗细
+			click:'click',				//给每段直线绑定事件
+			func:{},					//回调函数
+		}
+		obj.func=function(){};
+		var nowObj=$.extend({},obj,e,{func:callback});
+		var strHtml='';
+		var arry=nowObj.points;
+		var x=$(nowObj.parent).offset().left;
+		var y=$(nowObj.parent).offset().top;
+		$.each(arry,function(){
+			this.x=this.x-x;
+			this.y=this.y-y;
+		});
+		
+		for(var i=1;i<arry.length;i++){
+			strHtml+='<line x1="'+arry[i-1].x+'" y1="'+arry[i-1].y+'" x2="'+arry[i].x+'" y2="'+arry[i].y+'" style="stroke:'+nowObj.color+';stroke-width:'+nowObj.strokeWidth+'"/>';
+		}
+		$(nowObj.btn).css(nowObj.style);
+		$(nowObj.btn).html(strHtml);
+		$(nowObj.btn).children('line').on(nowObj.click,nowObj.func);
+	},
 });

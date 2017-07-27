@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{padding: 0;margin: 0;}
+			body{float: left;width: 100%;height: 100%;}
+			.p-box{float: left;width: 96%;margin: 2%;position: relative;}
+		</style>
+	</head>
+	<body>
+		<div class="p-box">
+			<svg id="svgLines" xmlns="http://www.w3.org/2000/svg" version="1.1"></svg>
+			<h3>f5刷新看看</h3>
+		</div>
+		<script src="js/echo.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				var points=[];
+				for(var i=0;i<100;i++){
+					var obj={};
+					obj.x=Math.random()*500;
+					obj.y=Math.random()*500;
+					points.push(obj);
+				}
+				var objStyle={width:'100%',height:'500px'}
+				
+				$.fn.svgLines({
+					points:points,
+					btn:'#svgLines',			//svg元素
+					style:objStyle,				//svg样式
+					parent:'.p-box',			//父级有影响排版的类名
+					color:'rgb(0,170,255)',		//线颜色
+					strokeWidth:2,				//线粗细
+					click:'click',				//给每段直线绑定事件
+					func:function(){alert('点击折线看看！')}
+				})
+			})
+			
+		</script>
+	</body>
+</html>
