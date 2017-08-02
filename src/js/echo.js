@@ -365,4 +365,40 @@ $.fn.extend({
 		$(nowObj.btn).html(strHtml);
 		$(nowObj.btn).children('line').on(nowObj.click,nowObj.func);
 	},
+	//复制黏贴自带版权
+	pasteFrom:function (e) {
+		var obj = {
+			url: location.href, 	//后带连接地址
+			description: '本文来自：' 	//版权说明
+		}
+		var nowObj = $.extend({}, obj, e);
+		var Sys = {};
+		var ua = navigator.userAgent.toLowerCase();
+		if(window.ActiveXObject) {
+			document.body.oncopy = function() {
+				event.returnValue = false;
+				var t = document.selection.createRange().text;
+				var s = nowObj.description + "<a href='" + nowObj.url + "'>" + nowObj.url + "</a>";
+				clipboardData.setData('Text', t + '\r\n' + s);
+			};
+		} else {
+			function addLink() {
+				var body_element = document.getElementsByTagName('body')[0];
+				var selection;
+				selection = window.getSelection();
+				var pagelink = nowObj.description + "<a href='" + nowObj.url + "'>" + nowObj.url + "</a>";
+				var copytext = selection + '\r\n' + pagelink;
+				var newdiv = document.createElement('div');
+				newdiv.style.position = 'absolute';
+				newdiv.style.left = '-99999px';
+				body_element.appendChild(newdiv);
+				newdiv.innerHTML = copytext;
+				selection.selectAllChildren(newdiv);
+				window.setTimeout(function() {
+					body_element.removeChild(newdiv);
+				}, 0);
+			}
+			document.oncopy = addLink;
+		}
+	},
 });

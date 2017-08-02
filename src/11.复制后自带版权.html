@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				padding: 0;
+				margin: 0;
+			}
+		</style>
+	</head>
+
+	<body>
+		<h3>复制我然后粘贴到搜索栏试试</h3>
+		<script src="js/echo.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			//复制黏贴自带版权
+			$.fn.pasteFrom(
+				{
+					url: location.href, 	//后带连接地址
+					description: '本文来自：' 	//版权说明
+				}
+			)
+		</script>
+	</body>
+
+</html>

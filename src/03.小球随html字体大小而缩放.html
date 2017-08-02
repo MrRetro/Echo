@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{margin: 0;padding: 0;}
+			html{font-size: 1000px;}
+			.p-btn{width: 0.5rem;height: 0.5rem;border-radius: 50%;background-color: wheat;}
+		</style>
+	</head>
+	<body>
+		<p style="font-size: 0.036rem;margin: 0.01rem;">缩放浏览器试试！！！</p>
+		<p class="p-btn"></p>
+		<script src="js/echo.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				$.fn.autoFontSize({
+					fontSize:1000,
+					screenW:1000,
+				});
+			})
+		</script>
+	</body>
+</html>

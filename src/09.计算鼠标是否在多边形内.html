@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{padding: 0;margin: 0;}
+			.box{width: 100px;height: 55px;background: red;position: relative;margin-top: 25px;margin: 200px;}
+			.box:before{content: "";position: absolute;top: -25px;left: 0;width: 0;height: 0;border-left: 50px solid transparent;border-right: 50px solid transparent;border-bottom: 25px solid red;}
+			.box:after{content: "";position: absolute;bottom: -25px;left: 0;width: 0;height: 0;border-left: 50px solid transparent;border-right: 50px solid transparent;border-top: 25px solid red;}
+			.box.cur{background-color: gray;}
+			.box.cur:before{border-bottom-color: gray;}
+			.box.cur:after{border-top-color: gray;}
+		</style>
+	</head>
+	<body>
+		<h3 style="margin: 10px;letter-spacing: 1px;">鼠标移动到图形内并在图形内点击试试~！~~~</h3>
+		<div class="box"></div>
+		<script src="js/echo.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				var x,y;
+				x=$('.box').offset().left;
+				y=$('.box').offset().top;
+				$.fn.polygon({
+					btn:'.box',					//目标
+					click:'click',				//事件
+					poly:
+					[
+						{lat:x+50,lng:y-25},
+						{lat:x+100,lng:y},
+						{lat:x+100,lng:y+50},
+						{lat:x+50,lng:y+85},
+						{lat:x,lng:y+55},
+						{lat:x,lng:y},
+					],							//多边形点坐标数组
+					cs:'cur',					//变化类名
+					func:function(){
+						alert('你做到了，退下吧！')
+					},							//回调海曙
+				})
+			})
+		</script>
+	</body>
+</html>
