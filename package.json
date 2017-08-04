@@ -1,13 +1,16 @@
 {
-  "name": "mrretro",
-  "version": "1.0.1",
+  "name": "Echo",
+  "version": "1.0.0",
   "description": "This is for study gulp project !",
   "homepage": "http://www.2tro.com",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MrRetro/Echo.git"
+    "url": "https://github.com/MrRetro/Echo.git"
   },
-  "author": "retro <caijiajia1@126.com>",
+  "author": {
+    "name": "retro",
+    "email": "caijiajia1@126.com"
+  },
   "license": "ISC",
   "devDependencies": {
     "gulp": "^3.8.11",
@@ -19,15 +22,5 @@
     "gulp-minify-css": "^1.2.4",
     "gulp-rename": "^1.2.2",
     "gulp-uglify": "^3.0.0"
-  },
-  "bugs": {
-    "url": "https://github.com/MrRetro/Echo/issues"
-  },
-  "main": "gulpfile.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [
-    "echo-web-tool"
-  ]
+  }
 }
