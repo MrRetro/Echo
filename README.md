@@ -35,31 +35,30 @@
      
 09.场景：鼠标移动到一个不规则图像时选中这个图像     
 	实现：$.fn.polygon(e,callback)   
-			参数e:   
-				{    
-					btn:'',							//目标    
-					click:'click',			//事件    
-					poly:[],						//多边形点坐标数组    
-					cs:'',							//变化类名    
-					func:{},						//回调函数    
-				}     
-			参数callback:此处放回调函数     
+#### {    
+        btn:'',							//目标    
+        click:'click',			//事件    
+        poly:[],						//多边形点坐标数组    
+        cs:'',							//变化类名    
+        func:{},						//回调函数    
+#### }     
+    参数callback:此处放回调函数     
   -->点这里：[polygon](http://htmlpreview.github.io/?https://github.com/MrRetro/Echo/blob/master/src/09.计算鼠标是否在多边形内.html)
      
 10.场景：通过坐标点数据画出折线图  
 	实现：$.fn.svgLines(e,callback)   
 			参数e:      
-				{       
-					points:[],								//坐标点[{x:50,y:50},{x:60,y:70},{x:80,y:90}]    
-					btn:'svg',								//svg元素     
-					style:{},									//svg样式    
-					parent:'body',						//父级有影响排版的类名     
-					color:'rgb(0,170,255)',		//线颜色    
-					strokeWidth:2,						//线粗细   
-					click:'click',						//给每段直线绑定事件   
-					func:{},									//回调函数   
-				}     
-			参数callback:此处放回调函数     
+#### {       
+        points:[],								//坐标点[{x:50,y:50},{x:60,y:70},{x:80,y:90}]    
+        btn:'svg',								//svg元素     
+        style:{},									//svg样式    
+        parent:'body',						//父级有影响排版的类名     
+        color:'rgb(0,170,255)',		//线颜色    
+        strokeWidth:2,						//线粗细   
+        click:'click',						//给每段直线绑定事件   
+        func:{},									//回调函数   
+#### }
+    参数callback:此处放回调函数     
   -->点这里：[svgLines](http://htmlpreview.github.io/?https://github.com/MrRetro/Echo/blob/master/src/10.根据所有点坐标画折线.html)
      
 11.场景：复制网页的内容后想让别人看到自己的版权  
