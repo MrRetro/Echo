@@ -401,4 +401,90 @@ $.fn.extend({
 			document.oncopy = addLink;
 		}
 	},
+	//获取页面所有标签的类名和id并去重
+	getClasses:function() {
+		//数组去重
+		$.fn.getClasses.unique=function(arry) {
+			var res = [];
+			var json = {};
+			for(var i = 0; i < arry.length; i++) {
+				if(!json[arry[i]]) {
+					res.push(arry[i]);
+					json[arry[i]] = 1;
+				}
+			}
+			return res;
+		};
+		var arry = []; //获取所有id名称
+		var arryClass = []; //获取所有类名
+		var arryM = [];
+		var arryNM = [];
+		var newArry = [];
+		$('*').each(function() {
+			arry.push(this.id)
+		});
+		$('*').each(function() {
+			arryM = $(this).attr('class');
+			if(arryM) {
+				arryNM = arryM.split(' ');
+				
+				if(arryNM.length>1){
+					for(var i=0;i<arryNM.length;i++){
+						arry.push(arryNM[i])
+					}
+				}else{
+					arry.push(arryNM)
+				}
+			}
+		});
+		newArry = arry.join();
+		if(newArry) {
+			newArry = newArry.split(',');
+			return $.fn.getClasses.unique(newArry);
+		}
+	},
+	getStyleLines:function(e){
+		//数组去重
+		$.fn.getStyleLines.unique=function(arry) {
+			var res = [];
+			var json = {};
+			for(var i = 0; i < arry.length; i++) {
+				if(!json[arry[i]]) {
+					res.push(arry[i]);
+					json[arry[i]] = 1;
+				}
+			}
+			return res;
+		};
+		
+		var obj = {
+			el:[],	//类名或id数组
+			css:'',	//样式字符串
+		}
+		var nowObj = $.extend({}, obj, e);
+		var arry=nowObj.el;
+		var css=nowObj.css;
+		var cssArry=[],
+			cssNewArry=[],//样式每行放入数组
+			resitArry=[],//存在 匹配类名或id的所有样式(索引号)
+			resitNewArry=[];//筛选出最后的样式
+		cssArry=css.split('}')		
+		cssArry.map(function(v){
+			cssNewArry.push(v+'}')
+		})
+		
+		cssNewArry.map(function(vl,index){
+			arry.map(function(txt){
+				if(vl.indexOf(txt)>0){
+					resitArry.push(index);
+				}
+			});
+		});
+		resitArry=$.fn.getStyleLines.unique(resitArry);
+		
+		resitArry.map(function(vl){
+			resitNewArry.push(cssNewArry[vl]);
+		});
+		return resitNewArry;
+	},
 });

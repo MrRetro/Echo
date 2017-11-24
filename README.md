@@ -64,3 +64,16 @@
 11.场景：复制网页的内容后想让别人看到自己的版权  
 	实现：$.fn.pasteFrom({url: '连接地址',description: '版权说明'})    
   -->点这里：[pasteFrom](http://htmlpreview.github.io/?https://github.com/MrRetro/Echo/blob/master/src/11.复制后自带版权.html)
+     
+12.场景：获取页面所有标签的类名和id并去重  
+	实现：$.fn.getClasses()    
+  -->点这里：[getClasses](http://htmlpreview.github.io/?https://github.com/MrRetro/Echo/blob/master/src/12.获取页面所有标签的类名和id并去重.html)
+     
+13.场景：筛选出所有存在的id或类名的样式行  
+	实现：$.fn.getStyleLines(e)   
+			参数e:      
+#### {       
+        el:[],	//类名或id数组
+			  css:'',	//样式字符串
+#### }
+  -->点这里：[getStyleLines](http://htmlpreview.github.io/?https://github.com/MrRetro/Echo/blob/master/src/13.筛选出所有存在的id或类名的样式行.html)
