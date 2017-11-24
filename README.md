@@ -73,7 +73,7 @@
 	实现：$.fn.getStyleLines(e)   
 			参数e:      
 #### {       
-        el:[],	//类名或id数组
-			  css:'',	//样式字符串
+        el:[],	//类名或id数组    
+        css:'',	//样式字符串
 #### }
   -->点这里：[getStyleLines](http://htmlpreview.github.io/?https://github.com/MrRetro/Echo/blob/master/src/13.筛选出所有存在的id或类名的样式行.html)
